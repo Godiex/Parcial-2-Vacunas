@@ -1,0 +1,26 @@
+  <input type="checkbox" id="check">
+  <label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+  </label>
+  <div class="sidebar">
+    <ul>
+      <header></header>
+      <li><a [routerLink]='["/"]'><i class="fas fa-home"></i> Inicio</a></li>
+      <li><a [routerLink]='["/"]'><i class="fas fa-user-plus"></i> Registro</a></li>
+      <li><a [routerLink]='["/"]'><i class="fas fa-users"></i> Consulta</a></li>
+    </ul>
+    <div class="date">
+      <div class="onlydate">
+        <span id="day" class="day"></span><span id="month" class="month"></span><span id="year" class="year"></span>
+      </div>
+      <div class="clock">
+        <span id="hours" class="hours"></span><span id="minutes" class="minutes"></span><span id="seconds"
+          class="seconds"></span>
+      </div>
+    </div>
+  </div>
+  <section>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </section>

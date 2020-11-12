@@ -1,0 +1,124 @@
+.sidebar {
+  font-family: 'Roboto', sans-serif;
+  position: fixed; height: 100% !important;
+  left: -250px;   width: 250px;
+  background: #222831;
+  transition: all .5s ease;
+}
+
+* {
+  margin: 0; padding: 0;
+  top: 80px; list-style: none;
+  text-decoration: none;
+}
+
+.sidebar header {
+  padding-left: 20px;
+  font-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #FFFF; height: 200px;
+  background:#222831;
+  background-size: 45%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: -10px 5px 15px 1px #1f1e1e;
+}
+
+.sidebar ul a {
+  display: block;
+  height: 100%; width: 100%;
+  line-height: 60px; font-size: 16px;
+  color: #FFFF;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.068);
+  transition: .4s;
+  box-shadow: -10px 5px 15px -2px #1f1e1e;
+}
+
+ul li:hover a {
+  font-size: 19px;
+  padding-left: 80px;
+  padding-top: 5px;
+  text-decoration: none;
+  color:rgb(231, 14, 14);
+  background: rgb(141, 137, 137);
+}
+
+ul li:active a {background: rgb(240, 234, 234); color: #000000;}
+
+.sidebar ul a i {
+  margin-right: 16px;
+}
+
+#check {
+  display: none;
+}
+
+label #btn, label #cancel {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+label #btn {
+  position: fixed;
+  left: 20px; top: 0;
+  width: 70px; height: 60px;
+  z-index: 1111;
+  font-size: 35px;
+  color:#FFFF;
+  padding: 13px 19px;
+  transition: all .5s;
+  box-shadow: 0px 0px 30px -10px black;
+}
+
+label #cancel {
+  position: fixed;
+  width: 70px; height: 60px;
+  z-index: 1111;
+  left: -80px; top: 0;
+  font-size: 40px;
+  color:#FFFF;
+  padding: 12px 21px;
+  transition: all .5s ease;
+  box-shadow: 0px 0px 30px -10px black;
+}
+
+label #btn:hover, label #cancel:hover {
+  color:rgb(231, 14, 14);
+}
+
+#check:checked ~ .sidebar {
+  left: 0;
+}
+
+#check:checked ~ label #btn {
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#check:checked ~ label #cancel {
+  left: 20px;
+}
+
+#check:checked ~ section {
+  margin-left: 270px;
+}
+
+section {
+  transition: all .5s;
+  margin-top: 60px !important;
+}
+
+span {
+  color: #FFFF;
+  font-size: 180%;
+}
+
+.date {
+  text-align: center;
+  padding-top: 15%;
+}
