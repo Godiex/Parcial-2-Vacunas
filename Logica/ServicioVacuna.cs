@@ -27,7 +27,7 @@ namespace Logica
                     respuesta.Elemento = Vacuna;
                     Persona persona = _contexto.Personas.Find(Vacuna.Identificacion);
                     persona.Estado = "vacunado";
-                    _contexto.Update(persona);
+                    _contexto.Personas.Update(persona);
                     _contexto.Vacunas.Add(respuesta.Elemento);
                     _contexto.SaveChanges();
                 }
@@ -42,20 +42,29 @@ namespace Logica
 
         public Respuesta<Vacuna> EjecutarValidaciones(Respuesta<Vacuna> respuesta)
         {
-            respuesta.Elemento = ObtenerVacunaRegistrada(respuesta.Elemento);
-            if (respuesta.Elemento == null)
+            List<Vacuna> vacunas = ObtenerVacunasRegistrada(respuesta.Elemento);
+            
+            if (vacunas.Count == 0)
             {
                 respuesta.Error = false;
                 respuesta.Mensaje = "Operacion Realizada con exito";
             }
             else
-                respuesta = new Respuesta<Vacuna>(null, "La Vacuna que intenta guardar ya se encuentra registrada", true);
+            {
+                Vacuna vacuna  = vacunas.Where(v => v.Nombre == respuesta.Elemento.Nombre).ToList().First();
+                if (vacuna != null)
+                {
+                    respuesta = new Respuesta<Vacuna>(null, "La Vacuna que intenta guardar ya se encuentra registrada", true);
+                }
+            }
+            respuesta.Error = false;
+            respuesta.Mensaje = "Operacion Realizada con exito";
             return respuesta;
         }
 
-        public Vacuna ObtenerVacunaRegistrada(Vacuna vacuna)
+        public List<Vacuna> ObtenerVacunasRegistrada(Vacuna vacuna)
         {
-            return _contexto.Vacunas.Where(v => v.Identificacion == vacuna.Identificacion && v.Nombre.Equals(vacuna.Nombre)).ToList().First();
+            return _contexto.Vacunas.Where(v => v.Identificacion == vacuna.Identificacion).ToList();
         }
 
         public RespuestaConsulta<Vacuna> ObtenerVacunasDePersona(string  identificacion)
