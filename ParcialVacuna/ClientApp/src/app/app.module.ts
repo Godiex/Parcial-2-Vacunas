@@ -32,7 +32,7 @@ import { RegistroPersonaComponent } from './Parcial2/Componentes/busqueda-person
     AppRoutingModule,
     NgbModule
   ],
-  entryComponents: [AlertModalComponent],
+  entryComponents: [AlertModalComponent,RegistroPersonaComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

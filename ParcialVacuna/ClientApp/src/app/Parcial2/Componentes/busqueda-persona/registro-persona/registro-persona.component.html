@@ -1,1 +1,171 @@
-<p>registro-persona works!</p>
+
+
+<div class="modal-header">
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <h1>Resgitros Esudiantes</h1>
+<form [formGroup]="formularioRegistro">
+  <div class="row">
+    <div class="col-md-6">
+      <div>
+        <label>identificacion : </label>
+        <div class="input-group">
+          <input
+            [(ngModel)]="id"
+            type="text"
+            class="form-control"
+            placeholder="119281201"
+            name="identificacion"
+            formControlName="identificacion"
+          />
+          <div
+            *ngIf="
+              identificacion.invalid &&
+              (identificacion.dirty || identificacion.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="identificacion.errors.required">
+              identificacion es un valor requerido
+            </div>
+            <div *ngIf="identificacion.errors.minlength">
+              identificacion debe tener 10 caracteres
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label>tipo Documento : </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="persona.tipoDocumento"
+          name="tipoDocumento"
+          formControlName="tipoDocumento"
+        />
+        <div
+            *ngIf="
+            tipoDocumento.invalid &&
+              (tipoDocumento.dirty || tipoDocumento.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="tipoDocumento.errors.required">
+              tipoDocumento es un valor requerido
+            </div>
+            <div *ngIf="tipoDocumento.errors.minlength">
+              tipoDocumento debe tener 10 caracteres
+            </div>
+        </div>
+      </div>
+
+      <div>
+        <label>nombres : </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="persona.nombres"
+          name="nombres"
+          formControlName="nombres"
+        />
+        <div
+            *ngIf="
+            nombres.invalid &&
+              (nombres.dirty || nombres.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="nombres.errors.required">
+              nombres es un valor requerido
+            </div>
+            <div *ngIf="nombres.errors.minlength">
+              nombres debe tener 10 caracteres
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+
+      <div>
+        <label>fecha Nacimiento : </label>
+        <input
+          type="date"
+          class="form-control"
+          [(ngModel)]="persona.fechaNacimiento"
+          name="fechaNacimiento"
+          formControlName="fechaNacimiento"
+        />
+        <div
+            *ngIf="
+            fechaNacimiento.invalid &&
+              (fechaNacimiento.dirty || fechaNacimiento.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="fechaNacimiento.errors.required">
+              fechaNacimiento es un valor requerido
+            </div>
+        </div>
+      </div>
+
+      <div>
+        <label>nombres Acudiente : </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="persona.nombresAcudiente"
+          name="nombresAcudiente"
+          formControlName="nombresAcudiente"
+        />
+        <div
+            *ngIf="
+            nombresAcudiente.invalid &&
+              (nombresAcudiente.dirty || nombresAcudiente.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="nombresAcudiente.errors.required">
+              nombresAcudiente es un valor requerido
+            </div>
+            <div *ngIf="nombresAcudiente.errors.minlength">
+              nombresAcudiente debe tener 10 caracteres
+            </div>
+        </div>
+      </div>
+
+      <div>
+        <label>nombre Institucion Educativa : </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="persona.nombreInstitucionEducativa"
+          name="nombreInstitucionEducativa"
+          formControlName="nombreInstitucionEducativa"
+        />
+        <div
+            *ngIf="
+            nombreInstitucionEducativa.invalid &&
+              (nombreInstitucionEducativa.dirty || nombreInstitucionEducativa.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="nombreInstitucionEducativa.errors.required">
+              nombreInstitucionEducativa es un valor requerido
+            </div>
+            <div *ngIf="nombreInstitucionEducativa.errors.minlength">
+              nombreInstitucionEducativa debe tener 10 caracteres
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</form>
+
+</div>

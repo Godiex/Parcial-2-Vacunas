@@ -3,6 +3,8 @@ import { PersonaService } from '../../../services/persona.service';
 import { Persona } from '../../models/persona';
 import { Mensaje } from '../../../services/mensaje';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RegistroPersonaComponent } from './registro-persona/registro-persona.component';
 
 @Component({
   selector: 'app-busqueda-persona',
@@ -11,7 +13,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class BusquedaPersonaComponent implements OnInit {
   formularioRegistro: FormGroup;
-  constructor(private servicioPersona: PersonaService, public mensaje: Mensaje, private formBuilder: FormBuilder) { }
+  constructor(private servicioPersona: PersonaService, public mensaje: Mensaje, private formBuilder: FormBuilder,private modalService: NgbModal,) { }
   id: string;
   persona: Persona = new Persona();
   ngOnInit(): void {
@@ -21,6 +23,10 @@ export class BusquedaPersonaComponent implements OnInit {
   buscarPersona()
   {
     this.servicioPersona.buscar(this.id).subscribe(p => {
+      if(p.elemento ==null)
+      {
+        this.AbrirRegistro();
+      }
       this.persona = p.elemento;
       this.mensaje.Informar("Busqueda Persona", p.mensaje);
     });
@@ -35,5 +41,10 @@ export class BusquedaPersonaComponent implements OnInit {
   }
   get identificacion() {
     return this.formularioRegistro.get('identificacion');
+  }
+
+  AbrirRegistro()
+  {
+    this.modalService.open(RegistroPersonaComponent, { size: 'lg' });
   }
 }
