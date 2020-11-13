@@ -5,6 +5,8 @@ import { Mensaje } from '../../../services/mensaje';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegistroPersonaComponent } from './registro-persona/registro-persona.component';
+import { VacunaService } from 'src/app/services/vacuna.service';
+import { Vacuna } from '../../models/vacuna';
 
 @Component({
   selector: 'app-busqueda-persona',
@@ -12,8 +14,16 @@ import { RegistroPersonaComponent } from './registro-persona/registro-persona.co
   styleUrls: ['./busqueda-persona.component.css']
 })
 export class BusquedaPersonaComponent implements OnInit {
+
   formularioRegistro: FormGroup;
-  constructor(private servicioPersona: PersonaService, public mensaje: Mensaje, private formBuilder: FormBuilder,private modalService: NgbModal,) { }
+  vacunas : Vacuna [] = [];
+  constructor(
+    private servicioPersona: PersonaService,
+    public  mensaje: Mensaje,
+    private formBuilder: FormBuilder,
+    private modalService: NgbModal,
+    private servicioVacuna : VacunaService,
+    ) { }
   id: string;
   persona: Persona = new Persona();
   ngOnInit(): void {
@@ -29,8 +39,19 @@ export class BusquedaPersonaComponent implements OnInit {
       }
       else{
         this.persona = p.elemento;
+        this.ConsultarVacuna(p.elemento.identificacion);
       }
       this.mensaje.Informar("Busqueda Persona", p.mensaje);
+    });
+  }
+  ConsultarVacuna(id : string)
+  {
+    this.servicioVacuna.Consultar(id).subscribe(p => {
+      if(p.elementos != null)
+      {
+        this.vacunas = [];
+        this.vacunas = p.elementos;
+      }
     });
   }
 

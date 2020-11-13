@@ -15,7 +15,7 @@
                        placeholder="119281201"
                        name="identificacion"
                        formControlName="identificacion" />
-                       
+
 
                 <span class="input-group-btn">
                   <button class="btn-buscar" (click)="buscarPersona()" [disabled]="formularioRegistro.invalid">
@@ -32,8 +32,6 @@
                 </div>
               </div>
             </div>
-
-            
           </div>
         </div>
       </form>
@@ -87,6 +85,30 @@
                  name="nombreInstitucionEducativa" />
         </div>
       </div>
+
+
+
+  <h2>Vacunas realizadas</h2>
+
+  <table class="table table-hover table-sm table-bordered">
+    <thead class="header-table">
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vacuna of vacunas" >
+        <td>{{vacuna.vacunaId}}</td>
+        <td>{{vacuna.nombre}}</td>
+        <td>{{vacuna.fecha}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
     </div>
 
   </div>

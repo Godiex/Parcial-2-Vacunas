@@ -22,11 +22,11 @@ export class RegistroPersonaComponent implements OnInit {
     this.formularioRegistro = this.formBuilder.group(
       {
         identificacion: ['', [Validators.required, Validators.minLength(10)]],
-        tipoDocumento: ['', [Validators.required, Validators.minLength(20)]],
-        nombres: ['', [Validators.required, Validators.minLength(30)]],
-        nombresAcudiente: ['', [Validators.required, Validators.minLength(30)]],
+        tipoDocumento: ['', [Validators.required, Validators.minLength(1)]],
+        nombres: ['', [Validators.required, Validators.minLength(10)]],
+        nombresAcudiente: ['', [Validators.required, Validators.minLength(1)]],
         fechaNacimiento: [, [Validators.required]],
-        nombreInstitucionEducativa: ['', [Validators.required, Validators.minLength(30)]]
+        nombreInstitucionEducativa: ['', [Validators.required, Validators.minLength(1)]]
       }
     );
   }
@@ -48,6 +48,11 @@ export class RegistroPersonaComponent implements OnInit {
   get nombreInstitucionEducativa() {
     return this.formularioRegistro.get('nombreInstitucionEducativa');
   }
+  registroPersona ()
+  {
+    this.servicioPersona.Guardar(this.persona).subscribe(r => {
+      this.mensaje.Informar("Registro Estudiante",r.mensaje);
+    });
+  }
 
-  
 }

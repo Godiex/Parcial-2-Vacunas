@@ -15,7 +15,7 @@
         <label>identificacion : </label>
         <div class="input-group">
           <input
-            [(ngModel)]="id"
+            [(ngModel)]="persona.identificacion"
             type="text"
             class="form-control"
             placeholder="119281201"
@@ -164,6 +164,9 @@
 
     </div>
   </div>
+  <button class="btn-Guardar" (click)="registroPersona()" [disabled]="formularioRegistro.invalid">
+    <i class="fas fa-save"></i> Guardar
+  </button>
 </form>
 
 </div>
