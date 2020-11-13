@@ -12,7 +12,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 export class BusquedaPersonaComponent implements OnInit {
   formularioRegistro: FormGroup;
   constructor(private servicioPersona: PersonaService, public mensaje: Mensaje, private formBuilder: FormBuilder) { }
-  identificacion: string;
+  id: string;
   persona: Persona = new Persona();
   ngOnInit(): void {
     this.EstablecerValidacionesFormulario();
@@ -20,7 +20,7 @@ export class BusquedaPersonaComponent implements OnInit {
 
   buscarPersona()
   {
-    this.servicioPersona.buscar(this.identificacion).subscribe(p => {
+    this.servicioPersona.buscar(this.id).subscribe(p => {
       this.persona = p.elemento;
       this.mensaje.Informar("Busqueda Persona", p.mensaje);
     });
@@ -32,5 +32,8 @@ export class BusquedaPersonaComponent implements OnInit {
         identificacion: ['', [Validators.required, Validators.minLength(10)]]
       }
     );
+  }
+  get identificacion() {
+    return this.formularioRegistro.get('identificacion');
   }
 }

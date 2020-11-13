@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './footer/footer.component';
 import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
 import { BusquedaPersonaComponent } from './Parcial2/Componentes/busqueda-persona/busqueda-persona.component';
+import { RegistroPersonaComponent } from './Parcial2/Componentes/busqueda-persona/registro-persona/registro-persona.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BusquedaPersonaComponent } from './Parcial2/Componentes/busqueda-person
     NavMenuComponent,
     FooterComponent,
     AlertModalComponent,
-    BusquedaPersonaComponent
+    BusquedaPersonaComponent,
+    RegistroPersonaComponent
   ],
   imports: [
     BrowserModule,

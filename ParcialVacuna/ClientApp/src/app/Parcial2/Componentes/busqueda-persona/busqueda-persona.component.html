@@ -2,25 +2,42 @@
   <div class="card">
     <div class="card-body">
       <h1>Estudiantes Vacunas</h1>
-    </div>
-    <div class="form-group distacia-form">
-      <h2><strong>Fecha : </strong>{{ fecha | date }}</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <label>identificacion : </label>
-          <div class="input-group">
-            <input [(ngModel)]="identificacion"
-                   type="text"
-                   class="form-control"
-                   placeholder="119281201"
-                   name="identificacion" />
-            <span class="input-group-btn">
-              <button class="btn-buscar">
-                <i class="fas fa-search-plus"></i>
-              </button>
-            </span>
+      <form [formGroup]="formularioRegistro">
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-4">
+              <label>identificacion : </label>
+              <div class="input-group">
+                <input [(ngModel)]="id"
+                       type="text"
+                       class="form-control"
+                       placeholder="119281201"
+                       name="identificacion"
+                       formControlName="identificacion" />
+                       
+
+                <span class="input-group-btn">
+                  <button class="btn-buscar" (click)="buscarPersona()" [disabled]="formularioRegistro.invalid">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                </span>
+                <div *ngIf="identificacion.invalid && (identificacion.dirty || identificacion.touched)" class="alert alert-danger">
+                  <div *ngIf="identificacion.errors.required">
+                    identificacion es un valor requerido
+                  </div>
+                  <div *ngIf="identificacion.errors.minlength">
+                    identificacion debe tener 10 caracteres
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
           </div>
         </div>
+      </form>
+      <div class="row">
         <div class="col-md-4">
           <label>tipo Documento : </label>
           <input type="text"
@@ -38,21 +55,39 @@
                  name="nombres" />
         </div>
         <div class="col-md-4">
-          <label>Apellido 2 : </label>
+          <label>fecha Nacimiento : </label>
           <input type="text"
                  class="form-control"
                  disabled
-                 [(ngModel)]="persona.segundoApellido"
-                 name="segundoApellido" />
+                 [(ngModel)]="persona.fechaNacimiento"
+                 name="fechaNacimiento" />
         </div>
         <div class="col-md-4">
-          <label>Celular : </label>
+          <label>edad : </label>
+          <input type="number"
+                 class="form-control"
+                 disabled
+                 [(ngModel)]="persona.edad"
+                 name="edad" />
+        </div>
+        <div class="col-md-4">
+          <label>nombres Acudiente  : </label>
           <input type="text"
                  class="form-control"
                  disabled
-                 [(ngModel)]="cliente.celular"
-                 name="Celular" />
+                 [(ngModel)]="persona.nombresAcudiente"
+                 name="nombresAcudiente" />
+        </div>
+        <div class="col-md-4">
+          <label>nombre Institucion Educativa : </label>
+          <input type="text"
+                 class="form-control"
+                 disabled
+                 [(ngModel)]="persona.nombreInstitucionEducativa"
+                 name="nombreInstitucionEducativa" />
         </div>
       </div>
     </div>
+
   </div>
+</div>

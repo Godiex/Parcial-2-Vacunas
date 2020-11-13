@@ -6,6 +6,6 @@ export class Persona {
     nombresAcudiente: number;
     estado: string;
     nombreInstitucionEducativa: string;
-    fechaNacimiento: string;
+    fechaNacimiento: Date = new Date();
     edad: number;
 }
