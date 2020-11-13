@@ -6,12 +6,13 @@ namespace ParcialCorte1_ProgWeb.Models
     {
         public string Nombre { get; set; }
         public string Identificacion { get; set; }
+        public DateTime Fecha { get; set; }
     }
 
     public class VacunaViewModel: VacunaInputModel
     {
         public VacunaViewModel() { }
-        public DateTime Fecha { get; set; }
+        
         public int VacunaId { get; set; }
         public VacunaViewModel(Vacuna vacuna)
         {

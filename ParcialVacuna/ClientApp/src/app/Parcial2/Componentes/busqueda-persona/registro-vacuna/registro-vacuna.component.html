@@ -1,1 +1,33 @@
-<p>registro-vacuna works!</p>
+
+
+<div class="modal-header">
+  <h3>Registrar Vacuna</h3>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container">
+
+    <form [formGroup]="formularioRegistro">
+
+      <div class="form-group">
+        <label>Fecha de vacuna: </label>
+        <input type="date" [(ngModel)]="vacuna.fecha" name="nombre" formControlName="fecha" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>Tipo de vacuna: </label>
+        <select name="nombre" [(ngModel)]="vacuna.nombre" name="nombre" formControlName="nombre" class="form-control">
+          <option [value]="nombre" *ngFor="let nombre of nombres"> {{nombre}}</option>
+        </select>
+      </div>
+
+      <button class="btn-guardar">
+        <i class="fas fa-save" (click)="registroVacuna()"></i> Guardar
+      </button>
+
+    </form>
+  </div>
+</div>
+

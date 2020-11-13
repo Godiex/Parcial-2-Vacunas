@@ -73,6 +73,13 @@ export class BusquedaPersonaComponent implements OnInit {
   }
   AbrirRegistroVacuna()
   {
-    this.modalService.open(RegistroVacunaComponent);
+    if(this.persona.identificacion == null)
+    {
+      this.mensaje.Informar("Error","No ha ingresado al estudiante ");
+    }
+    else{
+      const consultaBox = this.modalService.open(RegistroVacunaComponent,{size: 'lg'})
+      consultaBox.componentInstance.identificacion = this.persona.identificacion;
+    }
   }
 }

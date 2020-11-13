@@ -41,7 +41,7 @@ namespace ParcialCorte2_ProgWeb.Controllers
         {
             var vacuna = new Vacuna();
             vacuna.Nombre = vacunaInput.Nombre;
-            vacuna.Fecha = DateTime.Now;
+            vacuna.Fecha = vacunaInput.Fecha;
             vacuna.Identificacion = vacunaInput.Identificacion;
             return vacuna;
         }
