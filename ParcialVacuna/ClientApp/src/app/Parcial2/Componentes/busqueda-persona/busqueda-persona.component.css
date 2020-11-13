@@ -1,10 +1,23 @@
-.btn-buscar i {
+.btn-Guardar i {
   color: aliceblue;
+  margin-right: 12px;
 }
 
-.btn-buscar {
-  background-color: #222831;
-  height: 38px;
-  width: 40px;
-  border-color: #222831;
+
+.btn-guardar
+{
+color: white;
+background-color: #222831;
+border-radius: 6px;
+font-size: 18px;
+border: 2px solid #222831;
+padding: 16;
+height: 37px;
+margin: 5px;
+}
+.btn-guardar:hover
+{
+color: rgb(231, 236, 241);
+background-color: #222831;
+border: 2px solid #222831;
 }

@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
 import { BusquedaPersonaComponent } from './Parcial2/Componentes/busqueda-persona/busqueda-persona.component';
 import { RegistroPersonaComponent } from './Parcial2/Componentes/busqueda-persona/registro-persona/registro-persona.component';
+import { RegistroVacunaComponent } from './Parcial2/Componentes/busqueda-persona/registro-vacuna/registro-vacuna.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RegistroPersonaComponent } from './Parcial2/Componentes/busqueda-person
     FooterComponent,
     AlertModalComponent,
     BusquedaPersonaComponent,
-    RegistroPersonaComponent
+    RegistroPersonaComponent,
+    RegistroVacunaComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ import { RegistroPersonaComponent } from './Parcial2/Componentes/busqueda-person
     AppRoutingModule,
     NgbModule
   ],
-  entryComponents: [AlertModalComponent,RegistroPersonaComponent],
+  entryComponents: [AlertModalComponent,RegistroPersonaComponent,RegistroVacunaComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegistroPersonaComponent } from './registro-persona/registro-persona.component';
 import { VacunaService } from 'src/app/services/vacuna.service';
 import { Vacuna } from '../../models/vacuna';
+import { RegistroVacunaComponent } from './registro-vacuna/registro-vacuna.component';
 
 @Component({
   selector: 'app-busqueda-persona',
@@ -69,5 +70,9 @@ export class BusquedaPersonaComponent implements OnInit {
   AbrirRegistro()
   {
     this.modalService.open(RegistroPersonaComponent, { size: 'lg' });
+  }
+  AbrirRegistroVacuna()
+  {
+    this.modalService.open(RegistroVacunaComponent);
   }
 }
