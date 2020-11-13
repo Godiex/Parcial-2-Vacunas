@@ -16,36 +16,20 @@ namespace ParcialCorte2_ProgWeb.Controllers
     public class PersonaController : ControllerBase
     {
         private readonly ServicioPersona _servicioPersona;
-        public PersonaController(ParcialContext contexto)
+        public PersonaController(VacunaContext contexto)
         {
             _servicioPersona = new ServicioPersona(contexto);
         }
 
-        [HttpGet("{formulario}")]
-        public object SeleccionarConsulta(string formulario)
+        private ActionResult<RespuestaConsulta<PersonaViewModel>> Consultar()
         {
-            if (formulario == "Consulta")
-            {
-                return Consultar();
-            }
-            else
-            {
-                return TotalizarMonto();
-            }
-        }
-        private ActionResult<PeticionConsulta<PersonaViewModel>> Consultar()
-        {
-            var peticion = _servicioPersona.ConsultarTodos();
+            var peticion = _servicioPersona.ConsultarVacunados();
             return Ok(peticion);
         }
         
-        private decimal TotalizarMonto()
-        {
-            return _servicioPersona.TotalizarMonto();
-        }
         // POST: api/Persona
         [HttpPost]
-        public ActionResult<Peticion<PersonaViewModel>> Guardar(PersonaInputModel personaInput)
+        public ActionResult<Respuesta<PersonaViewModel>> Guardar(PersonaInputModel personaInput)
         {
             Persona persona = MapearPersona(personaInput);
             var peticion = _servicioPersona.Guardar(persona);
@@ -57,13 +41,10 @@ namespace ParcialCorte2_ProgWeb.Controllers
             var persona = new Persona();
             persona.Identificacion = personaInput.Identificacion;
             persona.Nombres = personaInput.Nombres;
-            persona.Apellidos = personaInput.Apellidos;
-            persona.Edad = personaInput.Edad;
-            persona.Sexo = personaInput.Sexo;
-            persona.Departamento = personaInput.Departamento;
-            persona.Ciudad = personaInput.Ciudad;
-            persona.Apoyo.ValorApoyo = personaInput.Apoyo.ValorApoyo;
-            persona.Apoyo.Modalidad = personaInput.Apoyo.Modalidad;
+            persona.FechaNacimiento = personaInput.FechaNacimiento;
+            persona.NombreInstitucionEducativa = personaInput.NombreInstitucionEducativa;
+            persona.NombresAcudiente = personaInput.NombresAcudiente;
+            persona.TipoDocumento = personaInput.TipoDocumento;
             return persona;
         }
     }

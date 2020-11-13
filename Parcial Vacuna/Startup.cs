@@ -24,7 +24,7 @@ namespace ParcialCorte2_ProgWeb
         {
             // Configurar cadena de Conexion con EF
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ParcialContext>(p => p.UseSqlServer(connectionString));
+            services.AddDbContext<VacunaContext>(p => p.UseSqlServer(connectionString));
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

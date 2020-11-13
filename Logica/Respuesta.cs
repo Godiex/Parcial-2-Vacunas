@@ -3,31 +3,31 @@ using System.Collections.Generic;
 
 namespace Logica
 {
-    public class PeticionConsulta<G>
+    public class RespuestaConsulta<G>
     {
         public IList<G> Elementos { get; set; }
         public string Mensaje { get; set; }
         public bool Error { get; set; }
-        public PeticionConsulta(IList<G> elementos, string mensaje, bool error) {
+        public RespuestaConsulta(IList<G> elementos, string mensaje, bool error) {
             Elementos = elementos;
             Mensaje = mensaje;
             Error = error;
         }
-        public PeticionConsulta() {
+        public RespuestaConsulta() {
             Elementos = new List<G>();
         }
     }
-    public class Peticion<G>
+    public class Respuesta<G>
     {
         public G Elemento { get; set; }
         public string Mensaje { get; set; }
         public bool Error { get; set; }
-        public Peticion(G elemento, string mensaje, bool error) {
+        public Respuesta(G elemento, string mensaje, bool error) {
             Elemento = elemento;
             Mensaje = mensaje;
             Error = error;
         }
-        public Peticion(G elemento) {
+        public Respuesta(G elemento) {
             Elemento = elemento;
         }
     }

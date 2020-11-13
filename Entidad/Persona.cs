@@ -16,9 +16,28 @@ namespace Entidad
         public string Nombres { get; set; }
         [Column(TypeName = "nvarchar(40)")]
         public string NombresAcudiente { get; set; }
+        [Column(TypeName = "nvarchar(14)")]
+        public string Estado { get; set; }
         [Column(TypeName = "nvarchar(40)")]
         public string NombreInstitucionEducativa { get; set; }
         public DateTime FechaNacimiento { get; set; }
+
+        public Persona()
+        {
+            Estado = "No Vacunado";
+        }
+        public int Edad
+        {
+            get
+            {
+                int edad = DateTime.Now.Year - FechaNacimiento.Year;
+                if (FechaNacimiento.Month > DateTime.Now.Month)
+                {
+                    --edad;
+                }
+                return edad;
+            }
+        }
 
     }
 }

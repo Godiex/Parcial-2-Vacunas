@@ -2,96 +2,103 @@
 using System.Collections.Generic;
 using System;
 using Entidad;
-using Datos;
 using Microsoft.EntityFrameworkCore;
+using Datos;
 
 namespace Logica
 {
     public class ServicioPersona
     {
-        private readonly ParcialContext _contexto;
-
-        public ServicioPersona(ParcialContext contexto)
+        private readonly VacunaContext _contexto;
+        
+        public ServicioPersona(VacunaContext contexto)
         {
             _contexto = contexto;
         }
 
-        public Peticion<Persona> Guardar(Persona Persona)
+        public Respuesta<Persona> Guardar(Persona Persona)
         {
-            Peticion<Persona> peticion = new Peticion<Persona>(Persona);
+            Respuesta<Persona> respuesta = new Respuesta<Persona>(Persona);
             try
             {
-                peticion = EjecutarValidaciones(peticion);
-                if (peticion.Elemento != null)
+                respuesta = EjecutarValidaciones(respuesta);
+                if (respuesta.Elemento != null)
                 {
-                    peticion = new Peticion<Persona>(Persona,$"Los datos de {Persona.Nombres} han sido guardados correctamente",false);
-                    peticion.Elemento.Apoyo.Fecha = DateTime.Now.ToString();
-                    _contexto.Personas.Add(peticion.Elemento);
+                    respuesta = new Respuesta<Persona>(Persona,$"Los datos de {Persona.Nombres} han sido guardados correctamente",false);
+                    _contexto.Personas.Add(respuesta.Elemento);
                     _contexto.SaveChanges();
                 }
             }
             catch (Exception E)
             {
-                peticion.Elemento = null;
-                peticion.Mensaje = "Error de la aplicación: " + E.Message;
+                respuesta.Elemento = null;
+                respuesta.Mensaje = "Error de la aplicación: " + E.Message;
+            }
+            return respuesta;
+        }
+
+        public Respuesta<Persona> EjecutarValidaciones(Respuesta<Persona> respuesta)
+        {
+                Persona persona = respuesta.Elemento;
+            respuesta = BuscarPorIdentificacion(respuesta.Elemento.Identificacion);
+                if (respuesta.Elemento == null)
+                {
+                    respuesta.Elemento = persona;
+                }
+                else
+                respuesta = new Respuesta<Persona>(null,"La persona que intenta guardar ya se encuentra registrada (cédula existente)",true);
+            return respuesta;
+        }
+        public Respuesta<Persona> BuscarPorIdentificacion(string Identificacion)
+        {
+            Respuesta<Persona> peticion = new Respuesta<Persona>(new Persona());
+            try
+            {
+                peticion.Elemento = _contexto.Personas.Find(Identificacion);
+                peticion = (peticion.Elemento == null) ? new Respuesta<Persona>(null,$"La Persona con cédula numero {Identificacion} no se encuentra registrada",true):
+                new Respuesta<Persona>(peticion.Elemento,"Persona encontrada",false);
+            }
+            catch (Exception E)
+            {
+                peticion = new Respuesta<Persona>(null,"Error de la aplicación: " + E.Message,true);
             }
             return peticion;
         }
 
-        public Peticion<Persona> EjecutarValidaciones(Peticion<Persona> peticion)
+        
+        
+
+        public RespuestaConsulta<Persona> ConsultarTodos()
         {
-                Persona persona = peticion.Elemento;
-                peticion = BuscarPorIdentificacion(peticion.Elemento.Identificacion);
-                if (peticion.Elemento == null)
-                {
-                    peticion.Elemento = persona;
-                    peticion = ValidarMonto(peticion);
-                }
-                else
-                    peticion = new Peticion<Persona>(null,"La persona que intenta guardar ya se encuentra registrada (cédula existente)",true);
-            return peticion;
-        }
-        public Peticion<Persona> BuscarPorIdentificacion(string Identificacion)
-        {
-            Peticion<Persona> peticion = new Peticion<Persona>(new Persona());
+            RespuestaConsulta<Persona> peticion = new RespuestaConsulta<Persona>();
             try
             {
-                peticion.Elemento = _contexto.Personas.Find(Identificacion);
-                peticion = (peticion.Elemento == null) ? new Peticion<Persona>(null,$"La Persona con cédula numero {Identificacion} no se encuentra registrada",true):
-                new Peticion<Persona>(peticion.Elemento,"Persona encontrada",false);
-            }
-            catch (Exception E)
-            {
-                peticion = new Peticion<Persona>(null,"Error de la aplicación: " + E.Message,true);
-            }
-            return peticion;
-        }
-        public Peticion<Persona> ValidarMonto(Peticion<Persona> peticion)
-        {
-            decimal Total = TotalizarMonto();
-            if (Total + peticion.Elemento.Apoyo.ValorApoyo > 600000000)
-                peticion = new Peticion<Persona>(null,"Se ha superado la suma en conjunto del valor máximo de las ayudas: 600.000.000",true);
-            return peticion;
-        }
-        public PeticionConsulta<Persona> ConsultarTodos()
-        {
-            PeticionConsulta<Persona> peticion = new PeticionConsulta<Persona>();
-            try
-            {
-                peticion.Elementos = _contexto.Personas.Include(p => p.Apoyo).ToList();
+                peticion.Elementos = _contexto.Personas.ToList();
                 peticion = (peticion.Elementos.Count != 0)? 
-                new PeticionConsulta<Persona>(peticion.Elementos,"Consulta realizada con éxito",false):
-                new PeticionConsulta<Persona>(new List<Persona>(),"No se han encontrado Personas registradas",true);
+                new RespuestaConsulta<Persona>(peticion.Elementos,"Consulta realizada con éxito",false):
+                new RespuestaConsulta<Persona>(new List<Persona>(),"No se han encontrado Personas registradas",true);
             }
             catch (Exception e)
             {
-                peticion = new PeticionConsulta<Persona>(new List<Persona>(),"Error: " + e.Message,true);
+                peticion = new RespuestaConsulta<Persona>(new List<Persona>(),"Error: " + e.Message,true);
             }
             return peticion;
         }
-        public decimal TotalizarMonto()
+        public RespuestaConsulta<Persona> ConsultarVacunados()
         {
-            return _contexto.Personas.Sum(p=>p.Apoyo.ValorApoyo);
+            RespuestaConsulta<Persona> peticion = new RespuestaConsulta<Persona>();
+            try
+            {
+                peticion.Elementos = _contexto.Personas.Where(v =>v.Estado.Equals("vacunado")).ToList();
+                peticion = (peticion.Elementos.Count != 0) ?
+                new RespuestaConsulta<Persona>(peticion.Elementos, "Consulta realizada con éxito", false) :
+                new RespuestaConsulta<Persona>(new List<Persona>(), "No se han encontrado Personas vacunadas", true);
+            }
+            catch (Exception e)
+            {
+                peticion = new RespuestaConsulta<Persona>(new List<Persona>(), "Error: " + e.Message, true);
+            }
+            return peticion;
         }
     }
 }
