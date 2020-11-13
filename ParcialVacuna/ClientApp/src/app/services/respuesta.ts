@@ -1,4 +1,4 @@
-export class Peticion<G> {
+export class Respuesta<G> {
     constructor (Elemento: G) {
         this.elemento = Elemento;
     }
@@ -7,7 +7,7 @@ export class Peticion<G> {
     error: boolean;
 }
 
-export class PeticionConsulta<G> {
+export class RespuestaConsulta<G> {
     elementos: G[] = [];
     mensaje: string;
     error: boolean;

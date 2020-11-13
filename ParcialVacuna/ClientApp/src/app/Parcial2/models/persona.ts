@@ -2,9 +2,10 @@
 export class Persona {
     identificacion: string;
     nombres: string;
-    apellidos: string;
+    tipoDocumento: string;
+    nombresAcudiente: number;
+    estado: string;
+    nombreInstitucionEducativa: string;
+    fechaNacimiento: string;
     edad: number;
-    sexo: string;
-    departamento: string;
-    ciudad: string;
 }

@@ -27,7 +27,13 @@ namespace ParcialCorte2_ProgWeb.Controllers
             var peticion = _servicioPersona.ConsultarVacunados();
             return Ok(peticion);
         }
-        
+        [HttpGet("{identificacion}")]
+        public ActionResult<RespuestaConsulta<PersonaViewModel>> BuscarPersona(string identificacion)
+        {
+            var peticion = _servicioPersona.BuscarPorIdentificacion(identificacion);
+            return Ok(peticion);
+        }
+
         // POST: api/Persona
         [HttpPost]
         public ActionResult<Respuesta<PersonaViewModel>> Guardar(PersonaInputModel personaInput)

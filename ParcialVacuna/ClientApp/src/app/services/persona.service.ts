@@ -4,7 +4,7 @@ import { Persona } from '../Parcial2/models/persona';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HandleHttpErrorService } from '../@base/handle-http-error.service';
-import { Peticion, PeticionConsulta } from './peticion';
+import { Respuesta, RespuestaConsulta } from './respuesta';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertModalComponent } from '../@base/alert-modal/alert-modal.component';
 
@@ -20,24 +20,25 @@ export class PersonaService {
     this.baseURL = baseURL;
   }
 
-  Guardar(persona: Persona): Observable<Peticion<Persona>> {
-    return this.http.post<Peticion<Persona>>(this.baseURL + 'api/Persona', persona).pipe (
+  Guardar(persona: Persona): Observable<Respuesta<Persona>> {
+    return this.http.post<Respuesta<Persona>>(this.baseURL + 'api/Persona', persona).pipe (
       tap(_ => this.HandleErrorService.log('Datos enviados exitosamente')),
-      catchError(this.HandleErrorService.handleError<Peticion<Persona>>('Registrar Persona', null))
+      catchError(this.HandleErrorService.handleError<Respuesta<Persona>>('Registrar Persona', null))
     );
   }
 
-  Consultar(formulario: string): Observable<PeticionConsulta<Persona>> {
-    return this.http.get<PeticionConsulta<Persona>>(this.baseURL + 'api/Persona/' + formulario).pipe (
+  Consultar(): Observable<RespuestaConsulta<Persona>> {
+    return this.http.get<RespuestaConsulta<Persona>>(this.baseURL + 'api/Persona').pipe (
       tap(_ => this.HandleErrorService.log('Datos enviados exitosamente')),
-      catchError(this.HandleErrorService.handleError<PeticionConsulta<Persona>>('Consultar Persona',null))
+      catchError(this.HandleErrorService.handleError<RespuestaConsulta<Persona>>('Consultar Persona',null))
     );
   }
 
-  Totalizar(formulario: string): Observable<number> {
-    return this.http.get<number>(this.baseURL + 'api/Persona/' + formulario).pipe (
+  buscar(identificacion :string): Observable<Respuesta<Persona>> {
+    return this.http.get<Respuesta<Persona>>(this.baseURL + 'api/Persona/' + identificacion).pipe(
       tap(_ => this.HandleErrorService.log('Datos enviados exitosamente')),
-      catchError(this.HandleErrorService.handleError<number>('Totalizar Ayudas',null))
+      catchError(this.HandleErrorService.handleError<Respuesta<Persona>>('buscar Persona', null))
     );
   }
+
 }

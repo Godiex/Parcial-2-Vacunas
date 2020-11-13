@@ -9,8 +9,8 @@ import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './footer/footer.component';
-import { FiltroPersonaPipe } from './pipe/filtro-persona.pipe';
 import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
+import { BusquedaPersonaComponent } from './Parcial2/Componentes/busqueda-persona/busqueda-persona.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +19,8 @@ import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
     EncabezadoComponent,
     NavMenuComponent,
     FooterComponent,
-    FiltroPersonaPipe,
-    AlertModalComponent
+    AlertModalComponent,
+    BusquedaPersonaComponent
   ],
   imports: [
     BrowserModule,
