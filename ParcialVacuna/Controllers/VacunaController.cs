@@ -21,10 +21,10 @@ namespace ParcialCorte2_ProgWeb.Controllers
             _servicioVacuna = new ServicioVacuna(contexto);
         }
 
-        [HttpGet]
+        [HttpGet("{identificacion}")]
         public ActionResult<RespuestaConsulta<PersonaViewModel>> ConsultarVacunados(string identificacion)
         {
-            var peticion = _servicioVacuna.ObtenerVacunasDePersona();
+            var peticion = _servicioVacuna.ObtenerVacunasDePersona(identificacion);
             return Ok(peticion);
         }
         
