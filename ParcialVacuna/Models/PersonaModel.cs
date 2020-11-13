@@ -27,4 +27,5 @@ namespace ParcialCorte1_ProgWeb.Models
             FechaNacimiento = persona.FechaNacimiento;
         }
     }
+    
 }

@@ -100,5 +100,57 @@ namespace Logica
             }
             return peticion;
         }
+
+        public List<PersonaViewCompleteModel> ObtenerPersonasComplete (){
+            var personas =  ConsultarVacunados().Elementos;
+            List<PersonaViewCompleteModel> personasComplete = ObtenerPersonaCompleta(personas);
+            foreach (var persona in personasComplete)
+            {
+                List<Vacuna> vacunas = ObtenerVacunasRegistrada(persona.Identificacion);
+                persona.vacunados.AddRange(vacunas);
+            }
+            return personasComplete; 
+        }
+        public List<PersonaViewCompleteModel> ObtenerPersonaCompleta (IList<Persona> personas)
+        {
+            List<PersonaViewCompleteModel> personasComplete = new List<PersonaViewCompleteModel>();
+            foreach (var persona in personas)
+            {
+                var pesonaC = MapearPersona(persona);
+                personasComplete.Add(pesonaC);
+            }
+            return personasComplete;
+        }
+        private PersonaViewCompleteModel MapearPersona (Persona persona)
+        {
+            var personaV = new PersonaViewCompleteModel();
+            personaV.Identificacion = persona.Identificacion;
+            personaV.Nombres = persona.Nombres;
+            personaV.FechaNacimiento = persona.FechaNacimiento;
+            personaV.NombreInstitucionEducativa = persona.NombreInstitucionEducativa;
+            personaV.NombresAcudiente = persona.NombresAcudiente;
+            personaV.TipoDocumento = persona.TipoDocumento;
+            personaV.Estado = persona.Estado;
+            return personaV;
+        }
+
+        public List<Vacuna> ObtenerVacunasRegistrada(string identificacion)
+        {
+            return _contexto.Vacunas.Where(v => v.Identificacion == identificacion).ToList();
+        }
+    }
+    public class PersonaViewCompleteModel
+    {
+        public PersonaViewCompleteModel() { }
+        public int Edad { get; set; }
+        public string Identificacion { get; set; }
+        public string TipoDocumento { get; set; }
+        public string Nombres { get; set; }
+        public string NombresAcudiente { get; set; }
+        public string NombreInstitucionEducativa { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public string Estado { get; set; }
+        public List<Vacuna> vacunados { get; set; } 
+        
     }
 }

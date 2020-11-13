@@ -1,0 +1,37 @@
+
+<div class="container">
+  <div  class="card">
+    <div class="card-body">
+      <br>
+      <h1>Conuslta de Estudiantes </h1>
+      <br>
+      <h3>Cantidad de Vacunados: {{cantidadVacunados}}</h3>
+      <br>
+      <table class="table table-hover table-sm table-bordered">
+        <thead class="header-table">
+          <tr>
+            <th>identificacion</th>
+            <th>tipo Documento</th>
+            <td>nombres</td>
+            <th>fechaNacimiento</th>
+            <th>edad</th>
+            <th>estado</th>
+            <th>Institucion Educativa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let persona of personas" >
+            <td>{{persona.identificacion}}</td>
+            <td>{{persona.tipoDocumento}}</td>
+            <td>{{persona.nombres}}</td>
+            <td>{{persona.fechaNacimiento | date}}</td>
+            <td>{{persona.edad}}</td>
+            <td>{{persona.estado}}</td>
+            <td>{{persona.nombreInstitucionEducativa}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

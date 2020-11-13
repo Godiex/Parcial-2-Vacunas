@@ -13,6 +13,8 @@ import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
 import { BusquedaPersonaComponent } from './Parcial2/Componentes/busqueda-persona/busqueda-persona.component';
 import { RegistroPersonaComponent } from './Parcial2/Componentes/busqueda-persona/registro-persona/registro-persona.component';
 import { RegistroVacunaComponent } from './Parcial2/Componentes/busqueda-persona/registro-vacuna/registro-vacuna.component';
+import { ConsultaVacunaComponent } from './Parcial2/Componentes/consulta-vacuna/consulta-vacuna.component';
+import { PersonasPipe } from './personas.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { RegistroVacunaComponent } from './Parcial2/Componentes/busqueda-persona
     AlertModalComponent,
     BusquedaPersonaComponent,
     RegistroPersonaComponent,
-    RegistroVacunaComponent
+    RegistroVacunaComponent,
+    ConsultaVacunaComponent,
+    PersonasPipe
   ],
   imports: [
     BrowserModule,
