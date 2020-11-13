@@ -21,7 +21,8 @@ namespace ParcialCorte2_ProgWeb.Controllers
             _servicioPersona = new ServicioPersona(contexto);
         }
 
-        private ActionResult<RespuestaConsulta<PersonaViewModel>> Consultar()
+        [HttpGet]
+        public ActionResult<RespuestaConsulta<PersonaViewModel>> ConsultarVacunados()
         {
             var peticion = _servicioPersona.ConsultarVacunados();
             return Ok(peticion);

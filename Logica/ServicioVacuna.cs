@@ -25,6 +25,9 @@ namespace Logica
                 if (!respuesta.Error)
                 {
                     respuesta.Elemento = Vacuna;
+                    Persona persona = _contexto.Personas.Find(Vacuna.Identificacion);
+                    persona.Estado = "vacunado";
+                    _contexto.Update(persona);
                     _contexto.Vacunas.Add(respuesta.Elemento);
                     _contexto.SaveChanges();
                 }
@@ -55,12 +58,12 @@ namespace Logica
             return _contexto.Vacunas.Where(v => v.Identificacion == vacuna.Identificacion && v.Nombre.Equals(vacuna.Nombre)).ToList().First();
         }
 
-        public RespuestaConsulta<Vacuna> ObtenerVacunasDePersona(Vacuna vacuna)
+        public RespuestaConsulta<Vacuna> ObtenerVacunasDePersona(string  identificacion)
         {
             RespuestaConsulta<Vacuna> peticion = new RespuestaConsulta<Vacuna>();
             try
             {
-                peticion.Elementos = _contexto.Vacunas.Where(v => v.Identificacion == vacuna.Identificacion).ToList();
+                peticion.Elementos = _contexto.Vacunas.Where(v => v.Identificacion == identificacion).ToList();
                 peticion = (peticion.Elementos.Count != 0) ?
                 new RespuestaConsulta<Vacuna>(peticion.Elementos, "Consulta realizada con éxito", false) :
                 new RespuestaConsulta<Vacuna>(new List<Vacuna>(), "No se han encontrado Vacunas registradas", true);

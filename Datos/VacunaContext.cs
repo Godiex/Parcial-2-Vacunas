@@ -19,7 +19,7 @@ namespace Datos
             constructoDeModelo.Entity<Vacuna>()
                     .HasOne<Persona>()
                     .WithMany()
-                    .HasForeignKey(v => v.VacunaId);
+                    .HasForeignKey(v => v.Identificacion);
         }
     }
 }
