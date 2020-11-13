@@ -27,7 +27,9 @@ export class BusquedaPersonaComponent implements OnInit {
       {
         this.AbrirRegistro();
       }
-      this.persona = p.elemento;
+      else{
+        this.persona = p.elemento;
+      }
       this.mensaje.Informar("Busqueda Persona", p.mensaje);
     });
   }

@@ -11,7 +11,7 @@
 <form [formGroup]="formularioRegistro">
   <div class="row">
     <div class="col-md-6">
-      <div>
+      <div class="form-group">
         <label>identificacion : </label>
         <div class="input-group">
           <input
@@ -39,32 +39,29 @@
         </div>
       </div>
 
-      <div>
+      <div class="form-group">
         <label>tipo Documento : </label>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="persona.tipoDocumento"
-          name="tipoDocumento"
-          formControlName="tipoDocumento"
-        />
+        <select name="tipoDocumento" formControlName="tipoDocumento"  class="form-control" [(ngModel)]="persona.tipoDocumento">
+          <option value="CC">CC</option>
+          <option value="TI">TI</option>
+        </select>
         <div
-            *ngIf="
-            tipoDocumento.invalid &&
-              (tipoDocumento.dirty || tipoDocumento.touched)
-            "
-            class="alert alert-danger"
-          >
-            <div *ngIf="tipoDocumento.errors.required">
-              tipoDocumento es un valor requerido
-            </div>
-            <div *ngIf="tipoDocumento.errors.minlength">
-              tipoDocumento debe tener 10 caracteres
-            </div>
+          *ngIf="
+          tipoDocumento.invalid &&
+            (tipoDocumento.dirty || tipoDocumento.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="tipoDocumento.errors.required">
+            tipoDocumento es un valor requerido
+          </div>
+          <div *ngIf="tipoDocumento.errors.minlength">
+            tipoDocumento debe tener 10 caracteres
+          </div>
         </div>
       </div>
 
-      <div>
+      <div class="form-group">
         <label>nombres : </label>
         <input
           type="text"
@@ -88,11 +85,12 @@
             </div>
         </div>
       </div>
+
     </div>
 
     <div class="col-md-6">
 
-      <div>
+      <div class="form-group">
         <label>fecha Nacimiento : </label>
         <input
           type="date"
@@ -114,7 +112,7 @@
         </div>
       </div>
 
-      <div>
+      <div class="form-group">
         <label>nombres Acudiente : </label>
         <input
           type="text"
@@ -139,7 +137,7 @@
         </div>
       </div>
 
-      <div>
+      <div class="form-group">
         <label>nombre Institucion Educativa : </label>
         <input
           type="text"

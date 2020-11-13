@@ -3,6 +3,7 @@ import { PersonaService } from '../../../../services/persona.service';
 import { Mensaje } from '../../../../services/mensaje';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Persona } from 'src/app/Parcial2/models/persona';
 
 @Component({
   selector: 'app-registro-persona',
@@ -14,17 +15,17 @@ export class RegistroPersonaComponent implements OnInit {
   constructor(private servicioPersona: PersonaService, public mensaje: Mensaje, private formBuilder: FormBuilder,public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
-
+    this.EstablecerValidacionesFormulario();
   }
-
+  persona : Persona = new Persona();
   EstablecerValidacionesFormulario() {
     this.formularioRegistro = this.formBuilder.group(
       {
         identificacion: ['', [Validators.required, Validators.minLength(10)]],
         tipoDocumento: ['', [Validators.required, Validators.minLength(20)]],
         nombres: ['', [Validators.required, Validators.minLength(30)]],
-        nombreAcudientes: ['', [Validators.required, Validators.minLength(30)]],
-        fechaNacimiento: ['', [Validators.required]],
+        nombresAcudiente: ['', [Validators.required, Validators.minLength(30)]],
+        fechaNacimiento: [, [Validators.required]],
         nombreInstitucionEducativa: ['', [Validators.required, Validators.minLength(30)]]
       }
     );
@@ -38,8 +39,8 @@ export class RegistroPersonaComponent implements OnInit {
   get nombres() {
     return this.formularioRegistro.get('nombres');
   }
-  get nombreAcudientes() {
-    return this.formularioRegistro.get('nombreAcudientes');
+  get nombresAcudiente() {
+    return this.formularioRegistro.get('nombresAcudiente');
   }
   get fechaNacimiento() {
     return this.formularioRegistro.get('fechaNacimiento');
@@ -47,4 +48,6 @@ export class RegistroPersonaComponent implements OnInit {
   get nombreInstitucionEducativa() {
     return this.formularioRegistro.get('nombreInstitucionEducativa');
   }
+
+  
 }
