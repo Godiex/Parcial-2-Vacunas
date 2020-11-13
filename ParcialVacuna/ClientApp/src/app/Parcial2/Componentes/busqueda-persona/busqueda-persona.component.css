@@ -1,0 +1,10 @@
+.btn-buscar i {
+  color: aliceblue;
+}
+
+.btn-buscar {
+  background-color: rgb(1,124,104);
+  height: 38px;
+  width: 40px;
+  border-color: rgb(1,124,104);
+}

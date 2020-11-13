@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h1>Estudiantes Vacunas</h1>
+    </div>
+    <div class="form-group distacia-form">
+      <h2><strong>Fecha : </strong>{{ fecha | date }}</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <label>identificacion : </label>
+          <div class="input-group">
+            <input [(ngModel)]="identificacion"
+                   type="text"
+                   class="form-control"
+                   placeholder="119281201"
+                   name="identificacion" />
+            <span class="input-group-btn">
+              <button class="btn-buscar">
+                <i class="fas fa-search-plus"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label>tipo Documento : </label>
+          <input type="text"
+                 class="form-control"
+                 disabled
+                 [(ngModel)]="persona.tipoDocumento"
+                 name="tipoDocumento" />
+        </div>
+        <div class="col-md-4">
+          <label>nombres : </label>
+          <input type="text"
+                 class="form-control"
+                 disabled
+                 [(ngModel)]="persona.nombres"
+                 name="nombres" />
+        </div>
+        <div class="col-md-4">
+          <label>Apellido 2 : </label>
+          <input type="text"
+                 class="form-control"
+                 disabled
+                 [(ngModel)]="persona.segundoApellido"
+                 name="segundoApellido" />
+        </div>
+        <div class="col-md-4">
+          <label>Celular : </label>
+          <input type="text"
+                 class="form-control"
+                 disabled
+                 [(ngModel)]="cliente.celular"
+                 name="Celular" />
+        </div>
+      </div>
+    </div>
+  </div>
