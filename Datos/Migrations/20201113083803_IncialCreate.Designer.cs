@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Datos.Migrations
 {
     [DbContext(typeof(VacunaContext))]
-    [Migration("20201113013019_IncialCreate")]
+    [Migration("20201113083803_IncialCreate")]
     partial class IncialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,7 +63,7 @@ namespace Datos.Migrations
                         .HasColumnType("nvarchar(11)");
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(11)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("VacunaId");
 

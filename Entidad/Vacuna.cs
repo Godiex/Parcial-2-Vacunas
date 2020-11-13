@@ -9,7 +9,7 @@ namespace Entidad
     public class Vacuna
     {
         public int VacunaId  { get; set; }
-        [Column(TypeName = "nvarchar(11)")]
+        [Column(TypeName = "nvarchar(30)")]
         public string Nombre { get; set; }
         public DateTime Fecha { get; set; }
         [Column(TypeName = "nvarchar(11)")]

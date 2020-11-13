@@ -164,8 +164,8 @@
 
     </div>
   </div>
-  <button class="btn-guardar">
-    <i class="fas fa-save" (click)="registroPersona ()"></i> Guardar
+  <button class="btn-guardar"  [disabled]="formularioRegistro.invalid" (click)="registroPersona()">
+    <i class="fas fa-save"  ></i> Guardar
   </button>
 </form>
 

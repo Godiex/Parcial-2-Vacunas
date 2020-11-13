@@ -51,10 +51,10 @@ namespace Logica
             }
             else
             {
-                Vacuna vacuna  = vacunas.Where(v => v.Nombre == respuesta.Elemento.Nombre).ToList().First();
+                Vacuna vacuna  = vacunas.Where(v => v.Nombre == respuesta.Elemento.Nombre).ToList().FirstOrDefault();
                 if (vacuna != null)
                 {
-                    respuesta = new Respuesta<Vacuna>(null, "La Vacuna que intenta guardar ya se encuentra registrada", true);
+                    return respuesta = new Respuesta<Vacuna>(null, "La Vacuna que intenta guardar ya se encuentra registrada", true);
                 }
             }
             respuesta.Error = false;

@@ -30,7 +30,7 @@ namespace Datos.Migrations
                 {
                     VacunaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(11)", nullable: true),
+                    Nombre = table.Column<string>(type: "nvarchar(30)", nullable: true),
                     Fecha = table.Column<DateTime>(nullable: false),
                     Identificacion = table.Column<string>(type: "nvarchar(11)", nullable: true)
                 },

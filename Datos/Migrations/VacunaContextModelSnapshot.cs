@@ -61,7 +61,7 @@ namespace Datos.Migrations
                         .HasColumnType("nvarchar(11)");
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(11)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("VacunaId");
 
